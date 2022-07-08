@@ -5,7 +5,6 @@ module.exports = sequelize => {
     code:{
       type: DataTypes.STRING(5),
       primaryKey:true,
-      allowNull: false,
     },
     name:{
       type: DataTypes.STRING,
@@ -14,10 +13,14 @@ module.exports = sequelize => {
     },
     age:{
       type: DataTypes.INTEGER,
+      // get(){
+      //   return `${this.getDataValue('age')} years old`
+      // }
     },
     race:{
       type: DataTypes.ENUM(['Human', 'Elf', 'Machine', 'Demon', 'Animal', 'Other']),
       defaultValue: 'Other'
+
     },
     hp:{
       type: DataTypes.FLOAT,
@@ -27,12 +30,13 @@ module.exports = sequelize => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    data_added:{
+    date_added:{
       type: DataTypes.DATEONLY,
-      defaultValue: Date.now(),
-    }
-
-
-
-  })
-}
+      defaultValue: DataTypes.NOW,
+    },
+  },
+  {
+    timestamps: false,
+  }
+ )
+};
